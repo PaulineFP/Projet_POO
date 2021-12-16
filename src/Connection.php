@@ -21,6 +21,10 @@ class Connection
 
       return $this->pdo->query($req);
     }
+
+    public function prepare(string $req){
+      return $this->pdo->prepare($req);
+    }
 }
 
  ?>

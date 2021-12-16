@@ -1,20 +1,18 @@
-
-<?php
- ?>
 <div class="cadre">
   <div class="img">
-
     <?php
-    echo $img;
+    // echo $img;
     /*echo $img_ .i; */
     ?>
   </div>
   <div class="txt">
     <div class="titre">
-      <?php echo $titre ?>
+      <?= $blog->getTitle();?>
     </div>
-    <div class="sous-titre">
-      <?php echo $desc ?>
+    <div class="Description">
+      <p>
+        <?= $blog->getDesc();?>
+      </p>
     </div>
   </div>
 </div>
