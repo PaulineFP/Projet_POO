@@ -77,6 +77,7 @@ private Connection $db;
       $stmp->bindParam(":num", $_POST['id']);
       $stmp->execute();
       }
+      header('Location: index.php');
   }
   public function create(){
     include('template/create.php');
@@ -90,10 +91,11 @@ private Connection $db;
     echo "Erreur il manque des paramettres";
     }
     else {
-      $article = $_POST['titre'];
-      $desc = $_POST['desc'];
-      echo "INSERT INTO femmes_histoire (titre, desc) VALUES('$article', '$desc')";
-      $req = $this->db->query("INSERT INTO femmes_histoire (`titre`, `desc`) VALUES('$article', '$desc')");
+      $stmp = $this->db->prepare("INSERT INTO femmes_histoire (`titre`, `desc`) VALUES(:titre, :desc)");
+      $stmp->bindParam(":titre", $_POST['titre']);
+      $stmp->bindParam(":desc", $_POST['desc']);
+      $stmp->execute();
+      header('Location: index.php');
     }
   }
 
@@ -104,10 +106,12 @@ private Connection $db;
       echo "Erreur pas d'id dans les paramettres";
     }else
     {
-      $id = $_REQUEST["lign_delete"];
       $id = intval($_GET['id']);
-      $req = $this->db->prepare("DELETE FROM femmes_histoire WHERE id = $id ");
-      $req->execute();
+      //bindparam
+      $stmp = $this->db->prepare("DELETE FROM femmes_histoire WHERE id = :num");
+      $stmp->bindParam(":num", $_GET['id']);
+      $stmp->execute();
+      header('Location: index.php');
     }
   }
 }

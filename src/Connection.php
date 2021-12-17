@@ -25,6 +25,10 @@ class Connection
     public function prepare(string $req){
       return $this->pdo->prepare($req);
     }
+
+    public function lastInsertId(){
+      return $this->pdo->lastInsertId();
+    }
 }
 
  ?>

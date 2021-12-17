@@ -15,7 +15,6 @@ else if (isset($_GET['edit']))
 else if (isset($_POST['newUpdate']))
 {
   $controller-> update();
-  echo "coucou update";
   // $controller-> showall();
 }
 else if (isset($_GET['create']))
@@ -25,13 +24,13 @@ else if (isset($_GET['create']))
 else if (isset($_POST['newCreate']))
 {
   $controller-> created();
-  $controller-> showall();
+  // $controller-> showall();
 }
 
 else if (isset($_GET['delete']))
 {
   $controller-> delete();
-  $controller-> showall();
+  // $controller-> showall();
 }
 //faire un created
 else
