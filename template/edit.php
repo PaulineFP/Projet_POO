@@ -1,15 +1,3 @@
-<?php
-require_once '../src/Connection.php';
- use App\Connection;
-
-require_once '../app/BlogController.php';
-
-$controller = new App\controllers\BlogController();
-$id = $_GET["id"];
-$item = $controller->show($id);
-
- ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -20,10 +8,11 @@ $item = $controller->show($id);
 
   <h1 >Modifier un article de la BDD</h1>
 
-  <form action="" method="POST">
-      <input type="text" name="titre" placeholder="Titre de l'article" value='<?= $item->getTitle() ?>'>
-      <input type="text" name="desc"  placeholder="Description de l'article" value='<?= $item->getDesc() ?>'>
-      <button type="submit" name="lign_update" >Modifier</button>
+  <form action="index.php" method="POST">
+      <input type="text" name="titre" placeholder="Titre de l'article" value='<?= $blog->getTitle() ?>'>
+      <input type="text" name="desc"  placeholder="Description de l'article" value='<?= $blog->getDesc() ?>'>
+      <input type="hidden" name="id" value="<?= $blog->getId() ?>"></input>
+      <button type="submit" name="newUpdate">Modifier</button>
   </form>
 
 </body>

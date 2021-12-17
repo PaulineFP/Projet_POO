@@ -5,13 +5,14 @@
      <title>Titre de la page</title>
  </head>
 <br>
+<a class="create" href="index.php?create">Crée un article</a>
 <?php foreach ($blogs as $blog): ?>
 <p> L'article <?php echo  $blog->getTitle() ;?> qui a pour id <?php echo  $blog->getId();?> </p>
- <a class="delete" href="index.php?lign_delete&id=<?= intval($blog->getId()) ?> ">Supprimer l'article de la base de donnée </a>
+ <a class="delete" href="index.php?delete&id=<?= intval($blog->getId()) ?> ">Supprimer l'article de la base de donnée </a>
 </br>
- <a  class="update" href="index.php?lign_update&id=<?= intval($blog->getId()) ?> ">modifier l'article</a>
+ <a  class="update" href="index.php?edit&id=<?= intval($blog->getId()) ?> ">modifier l'article</a>
  <br>
- <a  href="index.php?id=<?= intval($blog->getId()) ?> ">Détail</a>
+ <a  href="index.php?show&id=<?= intval($blog->getId()) ?> ">Détail</a>
 <?php endforeach; ?>
 </body>
 </html>

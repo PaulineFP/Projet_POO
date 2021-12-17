@@ -1,5 +1,5 @@
 <?php
-require_once './src/Connection.php';
+/*require_once './src/Connection.php';
  use App\Connection;
 
 require_once './app/BlogController.php';
