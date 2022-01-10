@@ -2,6 +2,7 @@
 namespace App\controllers;
 require_once 'src/Connection.php';
 require_once 'BlogPost.php';
+require_once ('BlogRepository.php');
 
 use App\Connection;
 use App\entities\BlogPost;
@@ -12,9 +13,11 @@ class BlogController
 {
 
 private Connection $db;
+private BlogRepository $repo;
 
   function __construct(){
     $this->db = new Connection();
+    $this->repo = new BlogRepository();
   }
 
 
@@ -25,30 +28,17 @@ private Connection $db;
     if (!isset($_GET['id'])){
       echo "Erreur pas d'id dans les paramettres";
     }else {
-      $stmt = $this->db->prepare("SELECT * FROM femmes_histoire WHERE id = :num");
-      $stmt->bindParam(":num", $_GET['id']);
-      $stmt->execute();
-      $result = $stmt-> fetch();
-      $blog = new BlogPost ($result);
+      $blog = $this->repo->findById($_GET['id']);
       include ('template/article.php');
     }
   }
 //repositorie edit / show
   public function showall()
   {
-    $pdoStat = $this->db->query('SELECT * FROM femmes_histoire');
-    $blogs = array();
-
-    //On boucle les resultats de la requette
-    foreach ($pdoStat->fetchAll() as $blog) {
-      //On crée une nouvelle instance d'entité blog post
-     $e = new BlogPost ($blog);
-     //On ajoute la nouvelle entité dans le tableau
-     array_push($blogs, $e);
+    $blogs = $this->repo->findAll();
+    include "template/liste.php";
     }
-    include ('template/liste.php');
-    //return $blogs;
-  }
+
 
   public function edit()
   {
@@ -56,11 +46,7 @@ private Connection $db;
     if (!isset($_GET['id'])){
       echo "Erreur pas d'id dans les paramettres";
     }else {
-      $stmt = $this->db->prepare("SELECT * FROM femmes_histoire WHERE id = :num");
-      $stmt->bindParam(":num", $_GET['id']);
-      $stmt->execute();
-      $result = $stmt-> fetch();
-      $blog = new BlogPost ($result);
+      $blog = $this->repo->findById($_GET['id']);
       include ('template/edit.php');
     }
   }
@@ -70,14 +56,15 @@ private Connection $db;
     if(isset($_POST['titre']) && !empty($_POST['titre'])
     && isset($_POST['desc']) && !empty($_POST['desc']))
     {
-      // $stmp = $this->db->prepare("UPDATE femmes_histoire SET titre ='$article', desc = '$desc' WHERE id = :num");
-      $stmp = $this->db->prepare("UPDATE femmes_histoire SET `titre` = :titre, `desc` = :desc WHERE id = :num");
-      $stmp->bindParam(":titre", $_POST['titre']);
-      $stmp->bindParam(":desc", $_POST['desc']);
-      $stmp->bindParam(":num", $_POST['id']);
-      $stmp->execute();
-      }
+      $blog = $this->repo->findById($_POST['id']);
+      $blog->setTitle($_POST['titre']);
+      $blog->setDesc($_POST['desc']);
+      $this->repo->update($blog);
+
+
       header('Location: index.php');
+      }
+
   }
   public function create(){
     include('template/create.php');
@@ -107,7 +94,6 @@ private Connection $db;
     }else
     {
       $id = intval($_GET['id']);
-      //bindparam
       $stmp = $this->db->prepare("DELETE FROM femmes_histoire WHERE id = :num");
       $stmp->bindParam(":num", $_GET['id']);
       $stmp->execute();

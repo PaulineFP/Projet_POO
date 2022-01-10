@@ -23,5 +23,13 @@ namespace App\entities;
     function getDesc() {
       return $this -> desc;
     }
+
+    function setTitle($title) {
+      $this -> title = $title;
+    }
+
+    function setDesc($desc) {
+      $this -> desc = $desc;
+    }
   }
  ?>
