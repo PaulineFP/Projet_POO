@@ -1,0 +1,34 @@
+.couverture {background-image: url('../IMG/couverture.png'); background-size: cover; background-position: center; height: 450px;}
+#art_menu{
+  display:flex;flex-direction:column;justify-content:center;align-items:center;font-family:'Poppins', sans-serif;
+  h1{font-family: 'Alice', serif;font-size:2rem;padding: 2rem;background-color: white;margin-top: -50px;margin-bottom: 50px;border-left: 5px inset #9b22af; border-top: 10px inset #9b22af; box-shadow: rgba(80, 17, 91, 0.37) 5px 5px, rgba(80, 17, 91,0.27) 10px 10px, rgba(80, 17, 91, 0.17) 15px 15px, rgba(80, 17, 91, 0.08) 20px 20px, rgba(80, 17, 91, 0.04) 25px 25px;}
+   .cadre{display:flex;justify-content:center;flex-wrap:wrap;width:100%;
+      .create_art{padding:1rem;border-radius:5px;background-color:gray;display:flex;align-items:center}
+      .art_content{
+        width:350px;margin:10px;box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px; background-color: rgba(255,255,255, 0.6);
+        .art_title{
+          display:flex;padding:5px;justify-content:center;text-align:center;    height: 25px;
+          p{margin-right:5px}
+        }
+        .art_more{
+          text-align: center; margin: 2rem 0;
+          a {background: linear-gradient(142deg, #9b22af 36%, #ad9cce 100%);color: white;padding: 0.5rem;text-decoration: none; border-radius: 10px 3px;}
+        }
+        .art_option{
+          display: flex;justify-content: space-around; margin-bottom: 1rem;
+          a {text-decoration: none;}
+          .update a{color: #6b5d83;
+            &:hover{color: #50115B;}
+          }
+          .delete a {font-weight: bold; color: #ff6868;
+            &:hover {text-decoration: underline;}
+          }
+        }
+      }
+    }
+    .create_art{margin-top: 20px;width: 100%;background-color: #ff6868; padding: 1rem;display: flex;justify-content: center;
+      a {color: white;text-decoration: none;border-bottom: 2px solid;
+      &:hover {font-weight: bold;}
+      }
+    }
+}
