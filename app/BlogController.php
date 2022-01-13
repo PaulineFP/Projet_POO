@@ -29,10 +29,11 @@ private BlogRepository $repo;
       echo "Erreur pas d'id dans les paramettres";
     }else {
       $blog = $this->repo->findById($_GET['id']);
+      //chercher $comments à récupérer avec  CommentRepository -> findByIDBlogID (id du post)
       include ('template/article.php');
     }
   }
-//repositorie edit / show
+//repository edit / show
   public function showall()
   {
     $blogs = $this->repo->findAll();

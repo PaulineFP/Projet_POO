@@ -5,6 +5,7 @@ namespace App\entities;
     private int $id;
     private string $title;
     private string $desc;
+    
 
     function __construct($row) {
       $this -> id = $row["id"];
@@ -32,4 +33,8 @@ namespace App\entities;
       $this -> desc = $desc;
     }
   }
+
+
+
+
  ?>

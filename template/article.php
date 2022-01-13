@@ -14,5 +14,6 @@
         <?= $blog->getDesc();?>
       </p>
     </div>
+    <!-- Liste commentaires avec un $comments en boucle -->
   </div>
 </div>

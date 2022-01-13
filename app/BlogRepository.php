@@ -47,13 +47,6 @@ class BlogRepository {
     $stmp->bindParam(":num", $blog->getId());
     $stmp->execute();
   }
-//
-//   public function delete(BlogPost $blog) {
-//     //requete delete where id=$blog->getId()
-//   }
-//
-//   public function create(BlogPost $blog) {
-//     //requete insert en utilisant les infos contenu dans $blog, ex: bindParam("titre", $blog -> getTitle())
-//   }
+
  }
 ?>
