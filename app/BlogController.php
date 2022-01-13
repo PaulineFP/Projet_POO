@@ -3,6 +3,7 @@ namespace App\controllers;
 require_once 'src/Connection.php';
 require_once 'BlogPost.php';
 require_once ('BlogRepository.php');
+require_once ('CommentRepository.php');
 
 use App\Connection;
 use App\entities\BlogPost;
@@ -18,6 +19,7 @@ private BlogRepository $repo;
   function __construct(){
     $this->db = new Connection();
     $this->repo = new BlogRepository();
+    $this->recoCom = new CommentRepository();
   }
 
 
@@ -30,6 +32,7 @@ private BlogRepository $repo;
     }else {
       $blog = $this->repo->findById($_GET['id']);
       //chercher $comments à récupérer avec  CommentRepository -> findByIDBlogID (id du post)
+      $comments = $this->repoCom->findAllByBlogId($blog->getID());
       include ('template/article.php');
     }
   }

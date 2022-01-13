@@ -18,22 +18,22 @@ class CommentRepository {
   }
 
   // findAll des commentaires dans un seul article (Coupler une cololone de table 2 avec table 1 direct dans mysql)
-  public function findAllByBlogId (int $Blogid){
+  public function findAllByBlogId (int $blogID){
 
-    $stmt = $this->db->prepare('SELECT * FROM fhcomment WHERE BlogID = :num');
+    $stmt = $this->db->prepare('SELECT * FROM fhcomment WHERE blogID = :num');
     $stmt->bindParam(":num", $id);
     $stmt->execute();
 
     $comments = array();
 
-    foreach ($stmt->fetchall() as $blog) {
+    foreach ($stmt->fetchall() as $comment) {
       $e = New CommentPost ($comments);
       array_push($comments, $e);
     }
     return $comments;
   }
 
-  public function findById(int $id) {
+  public function findByIdCom(int $id) {
     //joindre la table pour afficher avec les ids de la table source
     $stmt = $this->db->prepare("SELECT * FROM fhcomment WHERE id = :num");
     $stmt->bindParam(":num", $id);

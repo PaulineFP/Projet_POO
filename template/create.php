@@ -13,7 +13,6 @@
     <section id="created">
       <div class="fond_form">
         <h1 >Crée un article dans la BDD</h1>
-
         <form class="form" action="index.php" method="POST">
             <input type="text" name="titre" placeholder="Titre de l'article">
             <textarea class="desc_txt" type="text" name="desc"  placeholder="Description de l'article"></textarea>
