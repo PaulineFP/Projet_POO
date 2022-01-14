@@ -37,6 +37,11 @@ else if (isset($_POST['newComment'])){
   $Comcontroller-> created();
 }
 
+else if (isset($_GET['deleteComment']))
+{
+  $Comcontroller-> delete();
+}
+
 else
 {
   $controller-> showall();

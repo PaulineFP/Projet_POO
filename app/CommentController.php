@@ -30,15 +30,35 @@ class CommentController
       || !isset($_POST['blogID']))
 
       {
-        echo "Erreur il manque des paramètres"
+        echo "Erreur il manque des paramètres";
       }
       else {
+        //deplacer dans repo
         $stmp = $this->db->prepare("INSERT INTO fhcomment (`name`,`comment`, `blogID`) VALUES(:name, :comment, :blogID)");
         $stmp->bindParam(":name", $_POST['name']);
         $stmp->bindParam(":comment", $_POST['comment']);
         $stmp->bindParam(":blogID", $_POST['blogID']);
         $stmp->execute();
-        header('location: article.php');
+        //------------
+        header('location: index.php?show&id='.$_POST['blogID']);
+      }
+    }
+
+    public function delete ()
+    {
+      if (!isset($_GET['id'])){
+        echo "Erreur pas d'id dans les paramèttres";
+      }
+      else {
+        $id = intval($_GET['id']);
+        $com = $this->repo->findByIdCom($id);
+
+        //Deplacer dans repo
+        $stmp = $this->db->prepare("DELETE FROM fhcomment WHERE id = :num");
+        $stmp->bindParam(":num", $_GET['id']);
+        $stmp->execute();
+        //-------------
+        header('Location: index.php?show&id='.$com->getBlogID());
       }
     }
 }

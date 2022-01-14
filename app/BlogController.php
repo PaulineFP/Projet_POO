@@ -19,7 +19,7 @@ private BlogRepository $repo;
   function __construct(){
     $this->db = new Connection();
     $this->repo = new BlogRepository();
-    $this->recoCom = new CommentRepository();
+    $this->repoCom = new CommentRepository();
   }
 
 
@@ -82,10 +82,13 @@ private BlogRepository $repo;
     echo "Erreur il manque des paramettres";
     }
     else {
+
+      //Déplacer dans repo
       $stmp = $this->db->prepare("INSERT INTO femmes_histoire (`titre`, `desc`) VALUES(:titre, :desc)");
       $stmp->bindParam(":titre", $_POST['titre']);
       $stmp->bindParam(":desc", $_POST['desc']);
       $stmp->execute();
+      //-------------
       header('Location: index.php');
     }
   }
@@ -98,9 +101,11 @@ private BlogRepository $repo;
     }else
     {
       $id = intval($_GET['id']);
+      //Déplacer dans repo
       $stmp = $this->db->prepare("DELETE FROM femmes_histoire WHERE id = :num");
       $stmp->bindParam(":num", $_GET['id']);
       $stmp->execute();
+      //-----------------
       header('Location: index.php');
     }
   }

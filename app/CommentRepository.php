@@ -13,7 +13,7 @@ class CommentRepository {
 
     private Connection $db;
 
-  function __construc() {
+  function __construct() {
     $this->db = new Connection ();
   }
 
@@ -21,13 +21,13 @@ class CommentRepository {
   public function findAllByBlogId (int $blogID){
 
     $stmt = $this->db->prepare('SELECT * FROM fhcomment WHERE blogID = :num');
-    $stmt->bindParam(":num", $id);
+    $stmt->bindParam(":num",$blogID);
     $stmt->execute();
 
     $comments = array();
 
     foreach ($stmt->fetchall() as $comment) {
-      $e = New CommentPost ($comments);
+      $e = New CommentPost ($comment);
       array_push($comments, $e);
     }
     return $comments;

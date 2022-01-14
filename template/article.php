@@ -27,6 +27,9 @@
             <b><?= $comment->getComment();?></b>
           </p>
         </div>
+        <div class="delete">
+            <a href="index.php?deleteComment&id=<?= intval($comment->getId()); ?> ">Supprimer</a>
+        </div>
 
       </div>
     <?php endforeach; ?>

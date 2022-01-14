@@ -7,7 +7,7 @@ namespace App\entities;
     private string $comment;
     private int $blogID;
 
-    function __construc($row) {
+    function __construct($row) {
       $this -> id = $row['id'];
       $this -> name = $row['name'];
       $this -> comment = $row['comment'];
